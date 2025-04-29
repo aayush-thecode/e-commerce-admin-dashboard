@@ -10,3 +10,11 @@ export interface IProduct {
     description?:string;
     
 }
+
+export interface CreateProduct {
+    name: string;
+    price: string;
+    coverImage: string;
+    images?: string[];
+    description?: string;
+  }

@@ -6,6 +6,7 @@ import { useAuth } from '@/context/auth.context';
 
 export const Header = () => {
   const { user, logout } = useAuth();
+
   console.log(user);
 
   return (
@@ -26,7 +27,7 @@ export const Header = () => {
         {/* Logout Icon */}
         <button onClick={logout} className="flex items-center gap-2 hover:text-gray-300 transition-colors">
           <IoIosLogOut size={28} />
-          <span>Logout</span>
+          <span >Logout</span>
         </button>
       </div>
     </div>

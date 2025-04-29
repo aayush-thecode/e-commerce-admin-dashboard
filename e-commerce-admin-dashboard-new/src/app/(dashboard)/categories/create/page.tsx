@@ -1,11 +1,12 @@
+import CategoryForm from '@/components/forms/category.forms'
+import React from 'react'
 
-
-const Page = () =>{
-    return (
-        <div>
-            Category create
-        </div>
-    )
+const CreateCategory = () => {
+  return (
+    <div>
+        <CategoryForm/>
+    </div>
+  )
 }
 
-export default Page
+export default CreateCategory;

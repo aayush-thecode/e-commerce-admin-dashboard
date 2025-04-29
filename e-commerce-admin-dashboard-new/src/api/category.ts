@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import api from "@/axios/api.axios";
+import { ICategoryInput } from "@/interface/auth/category.interface";
 
 export const getAllCategories = async() => {
     try{
@@ -21,6 +22,12 @@ export const deleteCategory = async(id:string) => {
     }
 }
 
-export const createNewCategory = async() => {
+export const createCategory = async(data:ICategoryInput) =>{
+    try{
+        const response = await api.post(`/category`,data)
+        return response?.data
 
+    }catch(error:any){
+        throw error?.response?.data; 
+    }
 }

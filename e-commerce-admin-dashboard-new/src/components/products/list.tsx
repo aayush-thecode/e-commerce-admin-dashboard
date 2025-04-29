@@ -1,14 +1,14 @@
 'use client'
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { deleteCategory, getAllCategories } from "@/api/category"
 import Table from "@/components/ui/table"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { createColumnHelper } from '@tanstack/react-table'
 import { Actions } from "../ui/table.actions"
 import toast from "react-hot-toast"
+import { deleteProductById, getAllProducts } from "@/api/product"
 import Loader from "../ui/loader"
 
-type Category = {
+type Product = {
   _id: string
   name: string
   description: string
@@ -16,30 +16,30 @@ type Category = {
   updatedAt: string
 }
 
-export const CategoryList = () => {
-  const columnHelper = createColumnHelper<Category>()
+export const ProductList = () => {
+  const columnHelper = createColumnHelper<Product>()
   const queryClient = useQueryClient()
 
-  // Fetch categories
+  // Fetch products
   const { data, isLoading } = useQuery({
-    queryKey: ['categories'],
-    queryFn: getAllCategories
+    queryKey: ['products'],
+    queryFn: getAllProducts
   })
 
-  // Mutation for deleting a category
+  // Mutation for deleting a Product
   const { mutate } = useMutation({
-    mutationFn: deleteCategory,
+    mutationFn: deleteProductById,
     onSuccess(data) {
       if (data.success) {
         toast.success(data?.message)
         
         // Optimistically update the UI
-        queryClient.setQueryData(['categories'], (oldData: any) => {
-          return oldData?.data?.filter((category: Category) => category._id !== data.data._id)
+        queryClient.setQueryData(['products'], (oldData: any) => {
+          return oldData?.data?.filter((product: Product) => product._id !== data.data._id)
         })
 
-        // Invalidate the query to refetch categories after mutation
-        queryClient.invalidateQueries({ queryKey: ['categories'] })
+        // Invalidate the query to refetch products after mutation
+        queryClient.invalidateQueries({ queryKey: ['products'] })
       }
     },
     onError(error) {
@@ -49,19 +49,19 @@ export const CategoryList = () => {
 
   // Function to handle deletion
   const handleDelete = async (id: string) => {
-    console.log('Deleting category with id:', id)
+    console.log('Deleting product with id:', id)
     try {
       await mutate(id)
     } catch (error) {
       console.log(error)
-      toast.error('Failed to delete category')
+      toast.error('Failed to delete product')
     }
   }
 
   const columns = [
     columnHelper.accessor('name', {
       cell: info => info.getValue(),
-      header: () => <span>Category Name</span>,
+      header: () => <span>Product Name</span>,
       footer: info => info.column.id,
     }),
     columnHelper.accessor(row => row.description, {
@@ -102,7 +102,7 @@ export const CategoryList = () => {
         return (
           <Actions
             handleDelete={() => { handleDelete(info.row.original._id) }}
-            updateLink={`/category/update/${info.row.original._id}`}
+            updateLink={`/product/update/${info.row.original._id}`}
           />
         )
       }
