@@ -33,12 +33,6 @@ export const ProductList = () => {
       if (data.success) {
         toast.success(data?.message)
         
-        // Optimistically update the UI
-        queryClient.setQueryData(['products'], (oldData: any) => {
-          return oldData?.data?.filter((product: Product) => product._id !== data.data._id)
-        })
-
-        // Invalidate the query to refetch products after mutation
         queryClient.invalidateQueries({ queryKey: ['products'] })
       }
     },

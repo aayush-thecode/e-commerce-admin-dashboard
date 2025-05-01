@@ -8,7 +8,6 @@ import categoryInputSchema from '@/schemas/category.schema';
 import {createCategory} from '@/api/category'
 import {useMutation,useQueryClient} from '@tanstack/react-query'
 import {toast} from 'react-hot-toast'
- 
 
 
 const CategoryForm = () =>{
@@ -35,6 +34,7 @@ const CategoryForm = () =>{
     
       const onSubmit = (data: ICategoryInput) => {
         console.log(data);
+        mutate(data);
       };
     return (
         <FormProvider {...methods}> 
@@ -46,7 +46,7 @@ const CategoryForm = () =>{
           name="description"
           label="Description"
           placeholder="Enter description (optional)"
-          multiline={true} // Render as a textarea
+          multiline={true} 
         />
 
         <button

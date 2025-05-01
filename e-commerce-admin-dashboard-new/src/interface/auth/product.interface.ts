@@ -11,10 +11,10 @@ export interface IProduct {
     
 }
 
-export interface CreateProduct {
+export interface IProductInput {
     name: string;
     price: string;
     coverImage: string;
     images?: string[];
     description?: string;
-  }
+}

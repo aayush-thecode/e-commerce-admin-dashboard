@@ -33,12 +33,6 @@ export const CategoryList = () => {
       if (data.success) {
         toast.success(data?.message)
         
-        // Optimistically update the UI
-        queryClient.setQueryData(['categories'], (oldData: any) => {
-          return oldData?.data?.filter((category: Category) => category._id !== data.data._id)
-        })
-
-        // Invalidate the query to refetch categories after mutation
         queryClient.invalidateQueries({ queryKey: ['categories'] })
       }
     },
