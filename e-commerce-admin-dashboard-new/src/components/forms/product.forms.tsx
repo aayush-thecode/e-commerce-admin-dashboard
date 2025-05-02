@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 import React from 'react';
 import { useForm, FormProvider,SubmitHandler } from 'react-hook-form';
@@ -8,10 +9,8 @@ import productInputSchema from '@/schemas/product.schema';
 import { createProduct } from '@/api/product';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
-import FileUpload from '../ui/file-upload';
-import CategorySelect from '../ui/category-select';
-
-
+import FileUpload from '../ui/file-upload'
+import CategorySelect from '../ui/category-select'
 const ProductForm = () => {
   const methods = useForm({
     resolver: yupResolver(productInputSchema),
@@ -39,7 +38,25 @@ const ProductForm = () => {
   });
 
   const onSubmit:SubmitHandler<IProductInput> = (data) => {
-    mutate(data);
+    const formData = new FormData();
+  formData.append('name', data.name);
+  formData.append('description', data.description || '');
+  formData.append('category', data.category);
+  formData.append('price', data.price.toString());
+
+  // Handle file inputs
+  if (data.coverImage instanceof File) {
+    formData.append('coverImage', data.coverImage);
+  }
+
+  if (Array.isArray(data.images)) {
+    data.images.forEach((image, i) => {
+      if (image instanceof File) {
+        formData.append(`images`, image); 
+      }
+    });
+  }
+    mutate(formData);
   };
 
   return (
@@ -57,7 +74,7 @@ const ProductForm = () => {
             placeholder="Enter product description"
             multiline={true}
           />
-          <Input name="category" label="Category" placeholder="Electronics" />
+          {/* <Input name="category" label="Category" placeholder="Electronics" /> */}
           <Input
             name="price"
             label="Price"

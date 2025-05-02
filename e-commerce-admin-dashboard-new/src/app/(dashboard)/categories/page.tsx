@@ -1,4 +1,3 @@
-import CategoryCreate from "@/components/category/create";
 import { CategoryList } from "@/components/category/list"
 import PageHeading from "@/components/ui/page-heading"
 

@@ -53,7 +53,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
           alt={`preview-${index}`}
           height={300}
           width={300}
-          className="w-20 h-20 object-cover rounded"
+          className="w-20 h-30 object-cover rounded"
         />
       ));
     } else if (value instanceof File) {
@@ -76,7 +76,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
       <div
         {...getRootProps()}
         className={`border-2 border-dashed rounded p-4 cursor-pointer text-center ${
-          isDragActive ? 'border-blue-500' : 'border-gray-300'
+          isDragActive ? 'border-orange-500' : 'border-gray-300'
         }`}
       >
         <input {...getInputProps()} />

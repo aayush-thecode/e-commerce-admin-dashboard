@@ -1,5 +1,5 @@
 'use client'
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { deleteCategory, getAllCategories } from "@/api/category"
 import Table from "@/components/ui/table"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"

@@ -1,8 +1,8 @@
 'use client';
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 
 import Table from "@/components/ui/table";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { createColumnHelper } from '@tanstack/react-table';
 import toast from "react-hot-toast";
 
@@ -13,18 +13,19 @@ import Loader from "../ui/loader";
 
 export const UserList = () => {
   const columnHelper = createColumnHelper<User>();
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
   // Fetch users
   const { data, isLoading } = useQuery({
     queryKey: ['users'],
-    queryFn: () => getAllUsers({ page: 1, limit: 20 }) // Example filters
+    queryFn: () => getAllUsers({ page: 1, limit: 20 }) 
   });
 
   // Mutation for deleting a user (you can add it later)
   // const { mutate } = useMutation({...});
 
   const handleDelete = async (id: string) => {
+    void id;
     toast.error('Delete function not implemented');
     // Add your delete logic here when ready
   };

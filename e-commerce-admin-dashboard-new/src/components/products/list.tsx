@@ -1,5 +1,5 @@
 'use client'
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import Table from "@/components/ui/table"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { createColumnHelper } from '@tanstack/react-table'

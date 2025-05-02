@@ -18,6 +18,7 @@ function Table({columns, data}: IProps) {
     columns,
     getCoreRowModel: getCoreRowModel(),
   })
+    console.log("🚀 ~ Table ~ data:", data,table.getHeaderGroups(),table.getRowModel().rows)
 
   return (
     <div className="border border-gray-300 shadow-md mx-10 rounded-md min-h-[400px] overflow-hidden mt-10">

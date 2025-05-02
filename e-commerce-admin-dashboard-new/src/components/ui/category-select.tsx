@@ -14,11 +14,12 @@ interface Option {
 const CategorySelect: React.FC = () => {
   const { control } = useFormContext();
   const {
-    field: { onChange, value },
+    // @typescript-eslint/no-unused-vars
+    field: {},
     fieldState: { error },
   } = useController({ name: 'category', control });
 
-  const { data, isLoading } = useQuery({
+  const { data } = useQuery({
     queryKey: ['categories'],
     queryFn: getAllCategories,
   });
@@ -31,7 +32,7 @@ const CategorySelect: React.FC = () => {
 
   return (
     <div className="mb-4">
-      <label className="block mb-2 font-medium">Category</label>
+      <label className="block mb-2 font-bold"></label>
       <SelectInput
         options={options}
         placeholder="Select a category"

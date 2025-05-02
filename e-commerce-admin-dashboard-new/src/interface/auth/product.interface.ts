@@ -13,8 +13,9 @@ export interface IProduct {
 
 export interface IProductInput {
     name: string;
-    price: string;
-    coverImage: string;
-    images?: string[];
     description?: string;
+    category: string;
+    price: number;
+    coverImage: File[];        
+    images: File[];
 }
