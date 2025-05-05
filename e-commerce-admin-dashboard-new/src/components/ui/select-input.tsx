@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import React from 'react';
-import Select  from 'react-select';
+import dynamic from 'next/dynamic';
+const Select = dynamic(() => import('react-select'), {ssr:false});
 import { useController, useFormContext } from 'react-hook-form';
 
 interface Option {

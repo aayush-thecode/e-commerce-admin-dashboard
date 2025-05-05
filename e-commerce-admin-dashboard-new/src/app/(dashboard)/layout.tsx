@@ -21,7 +21,7 @@ const Layout: React.FC<IProps> = ({ children }) => {
     }, [isAuthenticated, router]);
 
     return (
-        <div className='flex h-full w-full'>
+        <div className='flex h-full w-full overflow-y-clip'>
             <div className='h-full w-[250px] border-r border-gray-400'>
                 <SideBar />
             </div>
@@ -29,7 +29,7 @@ const Layout: React.FC<IProps> = ({ children }) => {
                 <div className='h-fit '>
                     <Header/>
                 </div>
-                <div className='flex-1'>
+                <div className='flex-1 overflow-auto'>
                     {children}
                 </div>
             </div>
