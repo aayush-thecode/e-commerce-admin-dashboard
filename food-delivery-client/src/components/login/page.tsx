@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 "use client";
 import * as React from "react";
 import { ILogin } from "@/interface/auth-interface";
@@ -48,6 +47,10 @@ const LoginPage = () => {
 
   const onSubmit: SubmitHandler<ILogin> = async (data) => {
     mutate(data);
+  };
+
+  const handleForgotPassword = () => {
+    router.push("/forgot-password");  // This will redirect to a page where users can reset their password
   };
 
   return (
@@ -130,6 +133,16 @@ const LoginPage = () => {
               {isPending ? "Logging in..." : "Login"}
             </button>
           </form>
+
+          {/* Forgot Password Link */}
+          <div className="text-center mt-4">
+            <button
+              onClick={handleForgotPassword}
+              className="text-sm text-orange-500 hover:text-orange-700"
+            >
+              Forgot your password?
+            </button>
+          </div>
         </motion.div>
       </div>
     </div>
